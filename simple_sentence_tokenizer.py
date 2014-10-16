@@ -1,8 +1,8 @@
 ## python3 simple_sentence_tokenizer.py --input INPUT_File --output OUTPUT_File
 ## cat INPUT_File | python3 simple_sentence_tokenizer.py > OUTPUT_File
 # Outputs line-delimited sentences
-# INPUT_File is a plain text file (defaults to stdout if --output missing or -)
-# OUTPUT_File is when the output is stored (defaults to stdout if --output missing or -)
+# INPUT_File is a plain text file (defaults to stdin if --input is - or is missing)
+# OUTPUT_File is a file with one sentence per line (defaults to stdout if --output is - or is missing)
 
 import re
 import sys
