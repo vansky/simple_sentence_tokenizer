@@ -1,8 +1,9 @@
-## python3 simple_sentence_tokenizer.py --input INPUT_File --output OUTPUT_File
+## python3 simple_sentence_tokenizer.py --input INPUT_File --output OUTPUT_File [--index]
 ## cat INPUT_File | python3 simple_sentence_tokenizer.py > OUTPUT_File
 # Outputs line-delimited sentences
 # INPUT_File is a plain text file (defaults to stdin if --input is - or is missing)
 # OUTPUT_File is a file with one sentence per line (defaults to stdout if --output is - or is missing)
+# --index: output the sentence-inital indices rather than actual sentences
 
 import re
 import sys
@@ -76,16 +77,36 @@ for lix,line in enumerate(text):
   outtext += sline
 
 previx = 0
-if 'output' in OPTS and OPTS['output'] != '-':
-  with open(OPTS['output'],'w') as f:
+if 'index' in OPTS:
+  #output indices
+  if 'output' in OPTS and OPTS['output'] != '-':
+    with open(OPTS['output'],'w') as f:
+      f.write('0\n')
+      for s in sentbounds[1:]:
+        output = ' '.join(outtext[previx:s])
+        if output.strip() != '':
+          f.write(str(s)+'\n')
+        previx = s
+  else:
+    sys.stdout.write('0\n')
     for s in sentbounds[1:]:
       output = ' '.join(outtext[previx:s])
       if output.strip() != '':
-        f.write(output+'\n')
+        sys.stdout.write(str(s)+'\n')
       previx = s
 else:
-  for s in sentbounds[1:]:
-    output = ' '.join(outtext[previx:s])
-    if output.strip() != '':
-      sys.stdout.write(output+'\n')
-    previx = s
+  #output sentences
+  if 'output' in OPTS and OPTS['output'] != '-':
+    with open(OPTS['output'],'w') as f:
+      for s in sentbounds[1:]:
+        output = ' '.join(outtext[previx:s])
+        if output.strip() != '':
+          f.write(output+'\n')
+        previx = s
+  else:
+    for s in sentbounds[1:]:
+      output = ' '.join(outtext[previx:s])
+      if output.strip() != '':
+        sys.stdout.write(output+'\n')
+      previx = s
+  

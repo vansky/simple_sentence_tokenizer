@@ -7,11 +7,12 @@ Useful for preparing sentences for parsing or for the Penn Tokenizer
 
 Some examples of how to run the script:  
 
-    python simple_sentence_tokenizer.py --input INPUT_File --output OUTPUT_File  
-    cat INPUT_File | python simple_sentence_tokenizer.py > OUTPUT_File  
+    python simple_sentence_tokenizer.py [--index] --input INPUT_File --output OUTPUT_File  
+    cat INPUT_File | python simple_sentence_tokenizer.py [--index] > OUTPUT_File  
 
 INPUT_File is a plain text file (defaults to stdin if --input is - or is missing)  
-OUTPUT_File is a file with one sentence per line (defaults to stdout if --output is - or is missing)  
+OUTPUT_File is a file with one sentence per line (defaults to stdout if --output is - or is missing)
+--index is an optional argument that will cause the script to output the sentence-initial word index per line instead of the actual sentence  
 
 The script will combine incomplete fragments to make a sentence and will split multiple sentences:
 
