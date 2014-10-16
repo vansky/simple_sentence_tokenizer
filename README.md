@@ -11,7 +11,7 @@ Some examples of how to run the script:
     cat INPUT_File | python simple_sentence_tokenizer.py > OUTPUT_File  
 
 INPUT_File is a plain text file (defaults to stdin if --input is - or is missing)  
-OUTPUT_File is file with one sentence per line (defaults to stdout if --output is - or is missing)  
+OUTPUT_File is a file with one sentence per line (defaults to stdout if --output is - or is missing)  
 
 The script will combine incomplete fragments to make a sentence and will split multiple sentences:
 
