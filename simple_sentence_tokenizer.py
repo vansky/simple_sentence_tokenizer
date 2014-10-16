@@ -15,7 +15,7 @@ for aix in range(1,len(sys.argv)):
     continue
   elif aix < len(sys.argv) - 1 and len(sys.argv[aix+1]) > 2 and sys.argv[aix+1][:2] == '--':
     #missing filename
-    OPTS[sys.argv[aix][2:1]] = True
+    OPTS[sys.argv[aix][2:]] = True
   else:
     OPTS[sys.argv[aix][2:]] = sys.argv[aix+1]  
 
