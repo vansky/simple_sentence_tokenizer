@@ -103,10 +103,18 @@ else:
         if output.strip() != '':
           f.write(output+'\n')
         previx = s
+      #output final sentence
+      output = ' '.join(outtext[previx:])
+      if output.strip() != '':
+        f.write(output+'\n')
   else:
     for s in sentbounds[1:]:
       output = ' '.join(outtext[previx:s])
       if output.strip() != '':
         sys.stdout.write(output+'\n')
       previx = s
-  
+    #output final sentence
+    output = ' '.join(outtext[previx:])
+    if output.strip() != '':
+      sys.stdout.write(output+'\n')
+      
